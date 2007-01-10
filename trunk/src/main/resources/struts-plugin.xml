@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="gwt-default" extends="struts-default">
+        <result-types>
+            <result-type name="void" class="com.googlcode.strut2gwtplugin.result.VoidResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="gwt"
+                class="com.googlcode.strut2gwtplugin.interceptor.GWTInterceptor" />
+        </interceptors>
+    </package>
+</struts>
