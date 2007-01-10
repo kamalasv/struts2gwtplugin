@@ -1,6 +1,4 @@
-#summary How to use
 #labels Featured
-
 ==Install plugin==
   # Copy the downloaded jar into the "WEB-INF/lib" folder
   # Copy gwt-servlet.jar (from GWT) into the "WEB-INF/lib" folder
@@ -77,6 +75,5 @@ ServiceDefTarget endpoint = (ServiceDefTarget) service;
 endpoint.setServiceEntryPoint("Hello.action");
 service.execute("Hello", callback);
 }}}
-
 
 
