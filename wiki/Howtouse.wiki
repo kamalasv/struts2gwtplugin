@@ -6,7 +6,7 @@
 ==Setup Action==
 Start by creating an action that contains the method that is going to be called. This method needs to match the signature of the service interface, but you don't need to implement the interface on the action.  This method will be different from regular Struts 2 action methods in that it returns any object (that GWT can serialize), instead of a result name. If you want to call regular actions from GWT (not using GWT's RPC) go [http://cwiki.apache.org/confluence/pages/viewpage.action?pageId=34036 here]
 
-In this example the action "Hello" will return the string passed to it. Remember, *this is not the regular Struts result*, it is the object that you will receive on the client side. The method can have any name.
+In this example the action "Hello" will return the string passed to it. Remember, *the returned object is not the regular Struts result*, it is the object that you will receive on the client side. The method can have any name.
 
 Example:
 {{{
@@ -36,10 +36,10 @@ Example:
   <constant name="struts.devMode" value="true" />
 
   <package name="example"  extends="gwt-default">
-    <action name="Hello" class="example.Hello">
-      <interceptor-ref name="gwt"/>
-      <result type="void"/>
-    </action>
+     <action name="Hello" class="example.Hello">
+        <interceptor-ref name="gwt"/>*
+        <result type="void"/>*
+     </action>
   </package>
 
 </struts>
