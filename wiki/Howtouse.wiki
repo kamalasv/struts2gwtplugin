@@ -21,7 +21,6 @@ public class Hello {
 For any action mapping that is going to be called from GWT:
   # Add the map inside a package that extends "gwt-default"
   # Add the "gwt" interceptor to the mapping
-  # Add a result of type "void" (doesn't do anything)
 
 Example:
 {{{
@@ -37,8 +36,7 @@ Example:
 
   <package name="example"  extends="gwt-default">
      <action name="Hello" class="example.Hello">
-        <interceptor-ref name="gwt"/>*
-        <result type="void"/>*
+        <interceptor-ref name="gwt"/>
      </action>
   </package>
 
@@ -75,5 +73,4 @@ ServiceDefTarget endpoint = (ServiceDefTarget) service;
 endpoint.setServiceEntryPoint("Hello.action");
 service.execute("Hello", callback);
 }}}
-
 
