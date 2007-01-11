@@ -6,7 +6,7 @@
     <groupId>com.googlcode.strut2gwtplugin</groupId>
     <artifactId>struts2gwtplugin</artifactId>
     <packaging>jar</packaging>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1-BETA</version>
     <name>struts2gwtplugin</name>
     <url>http://maven.apache.org</url>
 
@@ -53,7 +53,7 @@
         <dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-core</artifactId>
-            <version>2.0.3-SNAPSHOT</version>
+            <version>2.0.2</version>
         </dependency>
     </dependencies>
 </project>
