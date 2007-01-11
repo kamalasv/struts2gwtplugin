@@ -6,9 +6,6 @@
 
 <struts>
     <package name="gwt-default" extends="struts-default">
-        <result-types>
-            <result-type name="void" class="com.googlcode.strut2gwtplugin.result.VoidResult"/>
-        </result-types>
         <interceptors>
             <interceptor name="gwt"
                 class="com.googlcode.strut2gwtplugin.interceptor.GWTInterceptor" />

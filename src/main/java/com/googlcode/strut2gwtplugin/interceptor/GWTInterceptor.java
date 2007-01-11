@@ -46,8 +46,8 @@ public class GWTInterceptor implements Interceptor {
         GWTServlet servlet = new GWTServlet();
         servlet.setServletContext(ServletActionContext.getServletContext());
         servlet.setActionInvocation(invocation);
-        servlet.doPost(request, response);
-        return Action.SUCCESS;
+        servlet.service(request, response);
+        return null;
     }
 
 }

@@ -34,6 +34,7 @@ import java.util.zip.GZIPOutputStream;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -48,7 +49,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 /**
  * This class is a modified version of GWT's RemoteServiceServlet.java
  */
-class GWTServlet {
+class GWTServlet extends HttpServlet {
 
     /*
      * These members are used to get and set the different HttpServletResponse and
