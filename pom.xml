@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <version>0.1-BETA</version>
     <name>struts2gwtplugin</name>
-    <url>http://maven.apache.org</url>
+    <url>http://code.google.com/p/struts2gwtplugin/</url>
 
     <build>
         <pluginManagement>
