@@ -1,6 +1,4 @@
 #labels Featured
-# How to use the plugin with in a zero-configuration Struts 2 installation.
-
 = Introduction =
 
 One of the most exciting features of Struts 2 is the ability to use the framework with no configuration. All you have to do is add the servlet to your web.xml file and go. Unfortunately due to bug [http://issues.apache.org/struts/browse/WW-2016 WW-2016] the interceptor used by this plug-in cannot be referenced in the zero configuration setup. To work around this you can get very close to zero configuration using wildcard values in your action mappings. 
@@ -68,7 +66,6 @@ Using the definition above and based on the previous example, this *will* work:
 }}}
 
 Using wildcard values gets you very close to zero configuration and provides the ability to override the default behavior.
-
 
 
 
