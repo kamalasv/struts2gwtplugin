@@ -6,7 +6,7 @@
     <groupId>com.googlcode.strut2gwtplugin</groupId>
     <artifactId>struts2gwtplugin</artifactId>
     <packaging>jar</packaging>
-    <version>0.2-BETA1</version>
+    <version>0.2</version>
     <name>struts2gwtplugin</name>
     <url>http://code.google.com/p/struts2gwtplugin/</url>
 
@@ -32,6 +32,23 @@
                         </excludes>
                     </configuration>
                 </plugin>
+                <plugin>
+                  <artifactId>maven-assembly-plugin</artifactId>
+                  <configuration>
+                    <descriptorRefs>
+                      <descriptorRef>bin</descriptorRef>
+                    </descriptorRefs>
+                  </configuration>
+                  <executions>
+                    <execution>
+                      <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                      <phase>package</phase> <!-- append to the packaging phase. -->
+                      <goals>
+                        <goal>attached</goal> <!-- goals == mojos -->
+                      </goals>
+                    </execution>
+                  </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
         <defaultGoal>install</defaultGoal>
@@ -48,7 +65,6 @@
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <version>1.4.10</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.struts</groupId>
