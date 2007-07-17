@@ -138,10 +138,8 @@ class GWTServlet extends RemoteServiceServlet {
             result = RPC.encodeResponseForFailure(method, ite);
         }
         
-        // if we got a respone, package it up for GWT
-        if (callResult != null) {
-            result = RPC.encodeResponseForSuccess(method, callResult);
-        }
+        // package  up response for GWT
+        result = RPC.encodeResponseForSuccess(method, callResult);
         
         // return our response
         return result;
