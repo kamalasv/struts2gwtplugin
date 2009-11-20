@@ -26,6 +26,7 @@ import java.lang.reflect.Method;
 
 import javax.servlet.ServletContext;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.server.rpc.RPC;
 import com.google.gwt.user.server.rpc.RPCRequest;
@@ -122,24 +123,21 @@ class GWTServlet extends RemoteServiceServlet {
         }
         
         // now make the call
+        // comment by hc - if we get an exception, try to serialize the cause
+        // this could be statndard error handling needed by the client
         Object callResult = null;
         try {
             callResult = method.invoke(actionInvocation.getAction(), 
                     rpcRequest.getParameters());
-        } catch (IllegalAccessException iie) {
-            // This may need to change this to package up up the cause
-            // instead of the thrown exception, not sure if the 
-            // chaining will translate
-            result = RPC.encodeResponseForFailure(method, iie);
-        } catch (InvocationTargetException ite) {
-            // This may need to change this to package up up the cause
-            // instead of the thrown exception, not sure if the 
-            // chaining will translate
-            result = RPC.encodeResponseForFailure(method, ite);
-        }
-        
-        // package  up response for GWT
-        result = RPC.encodeResponseForSuccess(method, callResult);
+            // package  up response for GWT
+            result = RPC.encodeResponseForSuccess(method, callResult);
+        } catch (Exception e) {
+        	if (e.getCause() != null && e.getCause() instanceof IsSerializable) {
+        		result = RPC.encodeResponseForFailure(method, e.getCause());
+        	} else {
+        		throw new SecurityException("Unable to serialize the exception");
+        	}
+        } 
         
         // return our response
         return result;
