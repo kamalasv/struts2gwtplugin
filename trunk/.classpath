@@ -1,17 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/main/java"/>
-  <classpathentry kind="src" path="src/main/resources"/>
-  <classpathentry kind="src" path="src/test/java" output="target/test-classes"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/struts/struts2-api/2.0.3-SNAPSHOT/struts2-api-2.0.3-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/ognl/ognl/2.6.9/ognl-2.6.9.jar"/>
-  <classpathentry kind="var" path="M2_REPO/opensymphony/xwork/2.0.0/xwork-2.0.0.jar" sourcepath="M2_REPO/opensymphony/xwork/2.0.0/xwork-2.0.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/freemarker/freemarker/2.3.4/freemarker-2.3.4.jar"/>
-  <classpathentry kind="lib" path="C:/Program Files/Java/jdk1.5.0_09/lib/tools.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/struts/struts-annotations/1.0-SNAPSHOT/struts-annotations-1.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/1.2.22/gwt-user-1.2.22.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/struts/struts2-core/2.0.3-SNAPSHOT/struts2-core-2.0.3-SNAPSHOT.jar"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M2_REPO/ognl/ognl/2.7.3/ognl-2.7.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/opensymphony/xwork/2.0.3/xwork-2.0.3.jar" sourcepath="M2_REPO/opensymphony/xwork/2.0.0/xwork-2.0.0-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/freemarker/freemarker/2.3.8/freemarker-2.3.8.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/1.7.1/gwt-user-1.7.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/struts/struts2-core/2.1.8.1/struts2-core-2.1.8.1.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
