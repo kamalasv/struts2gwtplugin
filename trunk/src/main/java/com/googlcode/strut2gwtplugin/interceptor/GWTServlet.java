@@ -21,11 +21,9 @@
 package com.googlcode.strut2gwtplugin.interceptor;
 
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import javax.servlet.ServletContext;
-
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.IsSerializable;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.server.rpc.RPC;
@@ -36,6 +34,7 @@ import com.opensymphony.xwork2.ActionInvocation;
 /**
  * This class is a modified version of GWT's RemoteServiceServlet.java
  */
+@SuppressWarnings("serial")
 class GWTServlet extends RemoteServiceServlet {
 
     /** Context for the servlet */
@@ -47,13 +46,13 @@ class GWTServlet extends RemoteServiceServlet {
     /**
      * Find the invoked method on either the specified interface or any super.
      */
-    private static Method findInterfaceMethod(Class intf, String methodName,
-        Class[] paramTypes, boolean includeInherited) {
+    private static Method findInterfaceMethod(Class<?> intf, String methodName,
+        Class<?>[] paramTypes, boolean includeInherited) {
         try {
             return intf.getDeclaredMethod(methodName, paramTypes);
         } catch(NoSuchMethodException e) {
             if(includeInherited) {
-                Class[] superintfs = intf.getInterfaces();
+                Class<?>[] superintfs = intf.getInterfaces();
                 for(int i = 0; i < superintfs.length; i++) {
                     Method method = findInterfaceMethod(superintfs[i],
                         methodName, paramTypes, true);
@@ -87,10 +86,10 @@ class GWTServlet extends RemoteServiceServlet {
         RPCRequest rpcRequest= RPC.decodeRequest(payload);
         
         // get the parameter types for the method look-up
-        Class[] paramTypes = new Class[rpcRequest.getParameters().length];
-        for (int i=0; i < paramTypes.length; i++) {
-            paramTypes[i] = rpcRequest.getParameters()[i].getClass();
-        }
+       
+        
+        Class<?>[] paramTypes = rpcRequest.getMethod().getParameterTypes();        
+        paramTypes = rpcRequest.getMethod().getParameterTypes();
         
         // we need to get the action method from Struts
         Method method = findInterfaceMethod(
@@ -111,10 +110,7 @@ class GWTServlet extends RemoteServiceServlet {
             }
             
             // throw a security exception, could be attempted hack
-            //
-            // XXX - should we package up the failure like we do below? 
-            //
-            throw new SecurityException(
+            throw new GWTServletException(
                     "Failed to locate method "+ rpcRequest.getMethod().getName()
                     + "("+ params +") on interface "
                     + actionInvocation.getAction().getClass().getName()
@@ -135,14 +131,15 @@ class GWTServlet extends RemoteServiceServlet {
         	if (e.getCause() != null && e.getCause() instanceof IsSerializable) {
         		result = RPC.encodeResponseForFailure(method, e.getCause());
         	} else {
-        		throw new SecurityException("Unable to serialize the exception");
+        		throw new GWTServletException("Unable to serialize the exception.  " +
+        				"If you are trying to return an exception back to GWT, please implement IsSerializable");
         	}
         } 
         
         // return our response
         return result;
     }
-
+ 
     /**
      * Returns the servlet's context
      * 
@@ -177,5 +174,11 @@ class GWTServlet extends RemoteServiceServlet {
      */
     public void setActionInvocation(ActionInvocation actionInvocation) {
         this.actionInvocation = actionInvocation;
+    }
+    
+	class GWTServletException extends SecurityException {
+    	public GWTServletException(String msg) {
+    		super(msg + "RPC Encoding was done with GWT Version: " + GWT.getVersion());
+    	}
     }
 }
