@@ -139,7 +139,8 @@ class GWTServlet extends RemoteServiceServlet {
 				if (!found) {
 					throw new GWTServletException("Unchecked exception: " + e.getCause().getClass().getName());
 				}
-				result = RPC.encodeResponseForFailure(method, e.getCause());
+				result = RPC.encodeResponseForFailure(null, e.getCause());
+			     
 			} else {
 				throw new GWTServletException("Unable to serialize the exception.");
 			}
