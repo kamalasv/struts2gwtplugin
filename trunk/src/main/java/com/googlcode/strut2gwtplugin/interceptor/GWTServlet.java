@@ -25,7 +25,6 @@ import java.lang.reflect.Method;
 
 import javax.servlet.ServletContext;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.server.rpc.RPC;
 import com.google.gwt.user.server.rpc.RPCRequest;
@@ -84,11 +83,13 @@ class GWTServlet extends RemoteServiceServlet {
 		String result = null; 
 
 		// get the RPC Request from the request data
-		RPCRequest rpcRequest= RPC.decodeRequest(payload);
-
+		//RPCRequest rpcRequest= RPC.decodeRequest(payload);
+		RPCRequest rpcRequest = RPC.decodeRequest(payload,null,this);
+	
+		
+		 onAfterRequestDeserialized(rpcRequest);
+		 
 		// get the parameter types for the method look-up
-
-
 		Class<?>[] paramTypes = rpcRequest.getMethod().getParameterTypes();        
 		paramTypes = rpcRequest.getMethod().getParameterTypes();
 
@@ -126,7 +127,9 @@ class GWTServlet extends RemoteServiceServlet {
 					rpcRequest.getParameters());
 			// package  up response for GWT
 			result = RPC.encodeResponseForSuccess(method, callResult);
+			
 		} catch (Exception e) {
+			// check for checked exceptions
 			if (e.getCause() != null) {
 				Throwable cause = e.getCause();
 				boolean found = false;
@@ -139,8 +142,7 @@ class GWTServlet extends RemoteServiceServlet {
 				if (!found) {
 					throw new GWTServletException("Unchecked exception: " + e.getCause().getClass().getName());
 				}
-				result = RPC.encodeResponseForFailure(null, e.getCause());
-			     
+				result = RPC.encodeResponseForFailure(null, e.getCause(), rpcRequest.getSerializationPolicy());
 			} else {
 				throw new GWTServletException("Unable to serialize the exception.");
 			}
@@ -188,7 +190,9 @@ class GWTServlet extends RemoteServiceServlet {
 
 	class GWTServletException extends SecurityException {
 		public GWTServletException(String msg) {
-			super(msg + "RPC Encoding was done with GWT Version: " + GWT.getVersion());
+			super(msg);
 		}
 	}
+	
+
 }
