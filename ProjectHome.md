@@ -1,0 +1,1 @@
+Make calls to Struts 2 actions using GWT RPC mechanism
